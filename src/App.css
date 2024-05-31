@@ -1,5 +1,149 @@
-.header{
+* {
+
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.header {
+  background-color: #007F73;
+  color: white;
+  height: 60px;
+  line-height: 60px;
+  padding: "10px";
   text-align: center;
-  background-color: burlywood;
-  margin: 10px;
+  vertical-align: middle;
+  margin: 0;
+
+}
+
+.left {
+  margin-top: 20px !important;
+
+}
+
+.home {
+  text-align: center;
+}
+
+.allHeading {
+  text-align: center;
+  margin-top: 10px;
+  color: black;
+  margin-bottom: 10px;
+}
+
+.tableBox {
+  vertical-align: middle;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+table {
+  width: 70% !important;
+}
+
+table tr {
+  line-height: 100%;
+  vertical-align: middle;
+}
+
+.menu {
+  color: #6F4E37;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.list-group-item {
+  border: 0 !important;
+}
+
+.card {
+  background-color: #FFF2D7;
+  padding-top: 20px;
+  border-color: 0;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.addHead {
+  color: #007f72;
+  text-align: center;
+}
+
+.btn {
+
+  width: 49%;
+  color: black;
+  border: 0 !important;
+  height: 40px;
+  margin-top: 20px;
+
+}
+
+.btn1 {
+  background: #5AB2FF !important;
+
+}
+
+.btn2 {
+  background: #FA7070 !important;
+  margin-left: 2%;
+}
+
+
+.allBtn {
+  color: black !important;
+  margin: 0;
+  color: #fff !important;
+  width: 100% !important;
+}
+
+.allBtn:hover {
+  color: #000 !important;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.deletebtn {
+  background: #D04848 !important;
+}
+
+.updatebtn {
+  background: #387ADF !important;
+}
+
+
+.updatebtn:hover {
+  outline: 2px solid #387ADF !important;
+  background: #fff !important;
+  box-sizing: border-box !important;
+}
+
+.deletebtn:hover {
+  outline: 2px solid #D04848 !important;
+  background: #fff !important;
+  box-sizing: border-box !important;
+}
+
+
+
+.image {
+
+  height: 600px;
+  width: 40%px;
+  margin-top: 10px;
+}
+
+.homeHeading {
+  font-size: 50px;
+  width: 100% !important;
+  width: 80%;
+  text-align: center;
+  color: black;
+}
+
+
+
+.paragraph {
+  text-align: center;
+  font-size: 30px;
 }

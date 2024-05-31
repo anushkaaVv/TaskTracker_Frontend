@@ -1,19 +1,18 @@
 import React , {useEffect, useState} from 'react'
 import { Button, Table } from 'reactstrap';
-import { allTasks, getTask , removeTask} from '../services/TaskService';
-import { useNavigate, useParams } from 'react-router-dom';
+import { allTasks, removeTask} from '../services/TaskService';
+import { useNavigate} from 'react-router-dom';
 
 
 const AllTasks = () => {
 
 
     const [tasks, setTasks] =useState([]);
-    const [firstName, setTaskName] = useState("");
-    const [status, setStatus] = useState("");
     const navigator = useNavigate();
-    const {id} = useParams();
+   
 
     useEffect(() =>{
+        document.title = "AllTasks";
        getAllTask();
 
 
@@ -29,10 +28,11 @@ const AllTasks = () => {
     }
 
 
-
     function updateTask(id){
         navigator(`/update_task/${id}`);
     }
+
+
 
    function deleteTask(taskid){
         console.log(taskid);
@@ -48,14 +48,19 @@ const AllTasks = () => {
    
   return (
     <div>
-        <h2 className='text-center'>Tasks For the Day</h2>
-        <Table hover >
+        <h2 className='allHeading' >Tasks For the Day</h2>
+    <div className='tableBox' >
+        
+        <Table hover style={{width:"70%"}}>
             <thead>
                    <tr>
                     <th>Task Id</th>
                     <th>Task Name</th>
+                    {/* <th>End_Date</th> */}
                     <th>Task Status</th>
                     <th></th>
+                    <th></th>
+                    
                     </tr> 
             </thead>
             <tbody>
@@ -66,16 +71,18 @@ const AllTasks = () => {
                                 <td>{task.taskName}</td>
                                 <td>{task.status}</td>
                                 <td>
-                                    <Button onClick={() => updateTask(task.id)}> Update</Button>
+                                    <Button className='allBtn updatebtn' onClick={() => updateTask(task.id)}  > Update</Button>
                                 </td>
                                 <td>
-                                    <Button onClick={() => deleteTask(task.id)}> Delete</Button>
+                                
+                                    <Button className='allBtn deletebtn' onClick={() => deleteTask(task.id)}  > Delete</Button>
                                 </td>
                             </tr>
                             )
                     }
             </tbody>
         </Table>
+        </div>    
     </div>
   )
 }

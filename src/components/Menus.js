@@ -1,16 +1,19 @@
 import React from 'react'
-import { ListGroup, ListGroupItem } from 'reactstrap'
+import { ListGroup} from 'reactstrap'
 import { Link } from 'react-router-dom'
 
 function Menus() {
   return (
-    <ListGroup flush>
-    <ListGroupItem  action href="/" tag="a" > Home</ListGroupItem>
-    <ListGroupItem  action href="/view_tasks" tag="a" > View Tasks</ListGroupItem>
-    <ListGroupItem  action href="/add_task" tag="a" > Add Task</ListGroupItem>
-    <ListGroupItem  action href="#" tag="a" > About</ListGroupItem>
-    <ListGroupItem  action href="#" tag="a" > Contact</ListGroupItem>
- </ListGroup>
+    <div style={{ marginTop: "30px" }}   className='menu'>
+      <ListGroup flush >
+
+        <Link className="list-group-item list-group-item-action" tag="a" to="/" >  Home</Link>
+        <Link className="list-group-item list-group-item-action" tag="a" to="/view_tasks"> View Tasks</Link>
+        <Link className="list-group-item list-group-item-action" tag="a" to="/add_task"> Add Task</Link>
+        <Link className="list-group-item list-group-item-action" tag="a" to="#"> About</Link>
+        <Link className="list-group-item list-group-item-action" tag="a" to="#"> feedback</Link>
+      </ListGroup>
+    </div>
   )
 }
 

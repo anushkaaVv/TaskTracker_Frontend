@@ -6,8 +6,14 @@ import { getTask } from '../services/TaskService';
 
 function AddTask() {
 
+    useEffect(() =>{
+        document.title = "Add/Update";
+
+    }, [])
+
     const [taskName, setTaskName] = useState('');
     const [status, setStatus] = useState('');
+   
     const navigator = useNavigate();
 
 
@@ -17,11 +23,12 @@ function AddTask() {
     function handleStatus(e) {
         setStatus(e.target.value)
     }
+    
 
-    const [task, setTasks] =useState([]);
+    const [task, setTasks] = useState([]);
 
     function handleForm(e) {
-        const task = { taskName, status }
+        const task = { taskName, status}
         console.log(task);
         if (id) {
             updatedTask(id, task).then((response) => {
@@ -33,7 +40,7 @@ function AddTask() {
         } else {
 
             addTask(task).then((response) => {
-                console.log(response.data)
+                // console.log(response.data)
                 navigator("/view_tasks");
             }).catch((error) => {
                 console.log(error);
@@ -65,47 +72,68 @@ function AddTask() {
 
 
     return (
-        <div >
-            <Card style={{ margin: "10px" }}>
-                <CardBody>
+        <div className='carddiv' style={{ display: "flex", justifyContent: "center", alignContent: "center" }}>
+            <div className="card" style={{ marginTop: "35px", width: "70%", border:"0" }}>
+                <h2 className='addHead' >ADD/UPDATE </h2>
+               
 
-                    <CardTitle style={{background:"#1679AB", color:"white" }}> <h1 className='text-center'>ADD/UPDATE </h1></CardTitle>
+                    
 
                     <Form onSubmit={handleForm}>
-                        <FormGroup>
-                            <Label for="title">
-                                Enter Task
-                            </Label>
-                            <Input
-                                type="text"
-                                placeholder="Enter your task"
-                                id="title"
-                                value={taskName}
-                                onChange={handleTaskName}
+                        <div style={{ margin: "14px" }}>
+                            <FormGroup >
+                                <Label for="title">
+                                    Enter Task
+                                </Label>
+                                <Input
+                                    type="text"
+                                    placeholder="Enter your task"
+                                    id="title"
+                                    value={taskName}
+                                    onChange={handleTaskName}
 
-                            />
-                        </FormGroup>
-                        <FormGroup>
-                            <Label for="status">
-                                Status
-                            </Label>
-                            <Input
-                                type="text"
-                                placeholder="Enter your status"
-                                id="status"
-                                value={status}
-                                onChange={handleStatus}
-                            />
-                        </FormGroup>
-                        <Button type="submit" > Add</Button>
-                        <Button type="reset" onClick={(e) => {
-            setTaskName(" ");
-            setStatus(" ")
-        }}>Clear</Button>
+                                />
+                            </FormGroup>
+                            <FormGroup>
+                                <Label for="status">
+                                    Status
+                                </Label>
+                                <Input
+                                    type="text"
+                                    placeholder="Enter your status"
+                                    id="status"
+                                    value={status}
+                                    onChange={handleStatus}
+                                    autoComplete='off'
+                                />
+                            </FormGroup>
+
+
+                            {/* <FormGroup>
+                                <Label for="cal">
+                                    Status
+                                </Label>
+                                <Input
+                                    type="date"
+                                    placeholder="Enter your status"
+                                    id="cal"
+                                    value={cal}
+                                    onChange={handleCal}
+                                    autoComplete='off'
+                                />
+                            </FormGroup> */}
+
+
+                            <Button type="submit" className='btn btn1' > Add</Button>
+                            <Button type="reset" className='btn btn2 '  onClick={(e) => {
+                                setTaskName(" ");
+                                setStatus(" ")
+                            }}>Clear</Button>
+                        </div>
 
                     </Form>
-                </CardBody>
-            </Card>
+                
+            </div>
         </div>
     )
 }

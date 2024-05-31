@@ -9,15 +9,16 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
+    <div style={{margin:"0", padding:"0"}}>
     <Router>
     <Header/>
     
     <Container>
       <Row>
-        <Col md ={4}>
+        <Col md ={2}>
           <Menus/>
         </Col>
-        <Col md ={8} >
+        <Col md ={10}  className='left'   >
           <Routes>
             <Route path="/" Component={Home}/>
             <Route path="/add_task" Component={AddTask}/>
@@ -29,6 +30,7 @@ function App() {
       </Row>
     </Container>
   </Router>
+  </div>
   );
 }
 

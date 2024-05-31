@@ -1,11 +1,22 @@
 import React from 'react'
-
+import { useEffect } from 'react'
+import myimagecopy from "../images/myimage copy.png"
 const Home = () => {
+
+  useEffect(() =>{
+    document.title = "Task Tracker||Home";
+
+}, [])
+
   return (
     <div className="home">
-    <h1 className="text-center my-5 color-aqua" style={{backgroundColor:"#FFF2D7", width:"80%", textAlign:"center"}}> what's your plan for the day?</h1>
-    <p className=" text-center" >Get ready to track your task</p>
-</div>
+    <h1 className="homeHeading" > what's your plan for the day?</h1>
+   
+    
+    <img src={myimagecopy} alt='homeImage' className='image'></img>
+    <p className="paragraph" >Get ready to track your task</p>
+     
+     </div>
   )
 }
 

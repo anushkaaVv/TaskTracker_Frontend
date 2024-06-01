@@ -6,31 +6,31 @@ import './App.css';
 import Header from './components/Header';
 import { Container, Col, Row } from 'reactstrap';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
-    <div style={{margin:"0", padding:"0"}}>
-    <Router>
-    <Header/>
-    
-    <Container>
-      <Row>
-        <Col md ={2}>
-          <Menus/>
-        </Col>
-        <Col md ={10}  className='left'   >
-          <Routes>
-            <Route path="/" Component={Home}/>
-            <Route path="/add_task" Component={AddTask}/>
-            <Route path="/view_tasks" Component={AllTasks}/>
-            <Route path ="/update_task/:id" Component={AddTask}/>
-            
-          </Routes>
-        </Col>
-      </Row>
-    </Container>
-  </Router>
-  </div>
+    <div style={{ margin: "0", padding: "0" }}>
+      <ToastContainer/>
+      <Router>
+        <Header />
+        <Container>
+          <Row>
+            <Col sm={3}>
+              <Menus />
+            </Col>
+            <Col  sm={9} className='contentSide' >
+              <Routes>
+                <Route path="/" Component={Home} />
+                <Route path="/add_task" Component={AddTask} />
+                <Route path="/view_tasks" Component={AllTasks} />
+                <Route path="/update_task/:id" Component={AddTask} />
+              </Routes>
+            </Col>
+          </Row>
+        </Container>
+      </Router>
+    </div>
   );
 }
 

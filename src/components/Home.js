@@ -10,13 +10,10 @@ const Home = () => {
 
   return (
     <div className="home">
-    <h1 className="homeHeading" > what's your plan for the day?</h1>
-   
-    
-    <img src={myimagecopy} alt='homeImage' className='image'></img>
-    <p className="paragraph" >Get ready to track your task</p>
-     
-     </div>
+      <h1 className="homeHeading" > what Are Your Plans?</h1>
+      <img src={myimagecopy} alt='homeImage' className='image'></img>
+      <p className="paragraph" >Get ready to track your task</p>
+    </div>
   )
 }
 

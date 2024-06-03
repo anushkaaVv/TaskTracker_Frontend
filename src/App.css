@@ -170,12 +170,11 @@ table tr {
 }
 
 
-.highlight-row td{
+.highlight-row tr td{
   background-color: rgba(199, 251, 154, 0.655) !important;
   font-weight: bold !important;
 }
 .aboutImg{
   width: 90%;
-  
 
 }

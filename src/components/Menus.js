@@ -9,7 +9,7 @@ function Menus() {
         <Link className="list-group-item list-group-item-action" tag="a" to="/" >  Home</Link>
         <Link className="list-group-item list-group-item-action" tag="a" to="/view_tasks"> View Tasks</Link>
         <Link className="list-group-item list-group-item-action" tag="a" to="/add_task"> Add Task</Link>
-        <Link className="list-group-item list-group-item-action" tag="a" to="#">About</Link>
+        <Link className="list-group-item list-group-item-action" tag="a" to="/about">About</Link>
         <Link className="list-group-item list-group-item-action" tag="a" to="#">Feedback</Link>
       </ListGroup>
     </div>

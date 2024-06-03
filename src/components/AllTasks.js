@@ -57,7 +57,7 @@ const AllTasks = () => {
                         <tr>
                             <th>Task Name</th>
                             <th>Task Status</th>
-                            <th>End_Date</th>
+                            <th>Task End Date</th>
                             <th></th>
                             <th></th>
                         </tr>

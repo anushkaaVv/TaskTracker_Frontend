@@ -20,14 +20,14 @@ function AddTask() {
         status: '',
         date: ''
     });
-   
 
     const navigator = useNavigate();
 
 
     function handleForm(e) {
         e.preventDefault();
-        const task = { taskName, status, date };
+
+        const tasks = { taskName, status, date };
 
 
         const founderrors = {};
@@ -35,19 +35,26 @@ function AddTask() {
         if (taskName === '') {
             founderrors.taskName = 'Task name is required';
 
-        }
+        }else {
+            founderrors.taskName ='';
+          }
 
         if (status === '') {
             founderrors.status = 'Status is required';
 
-        }
+        }else {
+            founderrors.status ='';
+          }
 
         if (date ==='') {
             founderrors.date = 'date is required';
         }
+        else {
+            founderrors.date ='';
+          }
 
 
-        if (Object.keys(founderrors).length) {
+        if (founderrors.taskName !=='' || founderrors.status !== '' || founderrors.date !== '') {
             setErrors(founderrors);
             return;
 
@@ -55,8 +62,8 @@ function AddTask() {
 
 
         if(id){
-                updatedTask(id, task).then((response) => {
-
+                updatedTask(id, tasks).then((response) => {
+                        
                     navigator("/view_tasks");
                     toast("task updated succesfully")
 
@@ -65,7 +72,7 @@ function AddTask() {
 
                 })
             } else {
-                addTask(task).then((response) => {
+                addTask(tasks).then((response) => {
 
                     navigator("/view_tasks");
                     toast("task added succesfully")
@@ -87,6 +94,7 @@ function AddTask() {
                 (response) => {
                     setTaskName(response.data.taskName);
                     setStatus(response.data.status);
+                    setDate(response.data.date);
                 }
             ).catch(error => {
                 console.error(error);
@@ -111,13 +119,18 @@ function AddTask() {
                                 placeholder="Enter your task"
                                 id="title"
                                 value={taskName}
-                                onChange={(event) => { setTaskName(event.target.value) }}
+                                onChange={(event)=>{setTaskName(event.target.value)}}
                                 invalid={errors.taskName !== ''}
+                                
 
                             />
+                            
+
                             {errors.taskName && (
                                 <FormFeedback>{errors.taskName}</FormFeedback>
                             )}
+
+
 
                         </FormGroup>
 
@@ -130,7 +143,8 @@ function AddTask() {
                                 placeholder="Enter your status"
                                 id="status"
                                 value={status}
-                                onChange={(event) => { setStatus(event.target.value) }}
+                                onChange={(event)=>{setStatus(event.target.value)}}
+                    
                                 invalid={errors.status !== ''}
                                 autoComplete='off'
                             >
@@ -155,14 +169,14 @@ function AddTask() {
 
                         <FormGroup>
                             <Label for="date">
-                                Status
+                                Task End Date
                             </Label>
                             <Input
                                 type="date"
                                 placeholder="Enter your Date"
                                 id="date"
                                 value={date}
-                                onChange={(event) => setDate(event.target.value)}
+                                onChange={(event)=>{setDate(event.target.value)}}
                                 invalid={errors.date !== ''}
                             />
 
@@ -174,7 +188,8 @@ function AddTask() {
                         <Button type="submit" className='btn btn1' > Add</Button>
                         <Button type="reset" className='btn btn2 ' onClick={(e) => {
                             setTaskName(" ");
-                            setStatus(" ")
+                            setStatus(" ");
+                            setDate(" ")
                         }}>Clear</Button>
                     </div>
 

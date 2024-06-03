@@ -82,6 +82,7 @@ table tr {
   border: 0 !important;
 }
 
+
 .cardd {
 
   padding-top: 20px;
@@ -173,4 +174,8 @@ table tr {
   background-color: rgba(199, 251, 154, 0.655) !important;
   font-weight: bold !important;
 }
+.aboutImg{
+  width: 90%;
+  
 
+}

@@ -23,6 +23,7 @@
 }
 
 .home {
+
   text-align: center;
   animation: transition-in 0.75s;
 
@@ -43,7 +44,6 @@
 }
 
 .tableBox {
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   vertical-align: middle;
   display: flex;
   justify-content: center;
@@ -72,10 +72,16 @@ table tr {
   vertical-align: middle;
 }
 
+.highlight-row tr{
+  background-color: rgba(199, 251, 154, 0.655) !important;
+  font-weight: bold !important;
+} 
+
 .menu {
   color: #6F4E37;
   font-size: 20px;
   font-weight: bold;
+  margin-top: 30px;
 }
 
 .list-group-item {
@@ -85,10 +91,10 @@ table tr {
 
 .cardd {
 
-  padding-top: 20px;
+  padding: 10px;
+ 
   border-color: 0 ;
-  margin-top: 35px;
-  width: 70%;
+  width: 80%;
   border: 0;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   animation: transition-in 0.75s;
@@ -112,7 +118,7 @@ table tr {
 }
 
 .btn1 {
-  background: #5AB2FF !important;
+  background: #007f72 !important;
 
 }
 
@@ -139,12 +145,12 @@ table tr {
 }
 
 .updatebtn {
-  background: #387ADF !important;
+  background: #007F73 !important;
 }
 
 
 .updatebtn:hover {
-  outline: 2px solid #387ADF !important;
+  outline: 2px solid #007F73 !important;
   background: #fff !important;
   box-sizing: border-box !important;
 }
@@ -158,8 +164,8 @@ table tr {
 
 .image {
 
-  height: 600px;
-  width: 40%px;
+  height: 650px;
+  width: 600px;
   margin-top: 10px;
 }
 
@@ -170,11 +176,14 @@ table tr {
 }
 
 
-.highlight-row tr td{
-  background-color: rgba(199, 251, 154, 0.655) !important;
-  font-weight: bold !important;
-}
+
 .aboutImg{
   width: 90%;
 
+}
+
+.noTask{
+  color: #007f72;
+  font-weight: bold;
+  font-size: 28px;
 }

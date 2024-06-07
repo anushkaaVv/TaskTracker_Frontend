@@ -4,16 +4,19 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { addTask, updatedTask, getTask } from '../backendFunctions/TaskService';
 import { toast } from 'react-toastify';
 
+
 function AddTask() {
 
     useEffect(() => {
         document.title = "Add/Update";
-
     }, [])
+
+   
 
     const [taskName, setTaskName] = useState('');
     const [status, setStatus] = useState('');
     const [date, setDate] = useState('');
+
 
     const [errors, setErrors] = useState({
         taskName: '',
@@ -23,17 +26,14 @@ function AddTask() {
 
     const navigator = useNavigate();
 
-
+    const { id } = useParams();
     function handleForm(e) {
         e.preventDefault();
-
         const tasks = { taskName, status, date };
-
-
         const founderrors = {};
 
         if (taskName === '') {
-            founderrors.taskName = 'Task name is required';
+            founderrors.taskName = 'Task name is required with character >=2 and <=30';
 
         }else {
             founderrors.taskName ='';
@@ -53,42 +53,34 @@ function AddTask() {
             founderrors.date ='';
           }
 
-
-        if (founderrors.taskName !=='' || founderrors.status !== '' || founderrors.date !== '') {
+        if (founderrors.taskName !=='' || founderrors.status !== ''|| founderrors.date !== ''){
             setErrors(founderrors);
             return;
 
         }
 
-
+        
         if(id){
                 updatedTask(id, tasks).then((response) => {
-                        
                     navigator("/view_tasks");
                     toast("task updated succesfully")
 
                 }).catch((error) => {
                     console.log(error);
-
                 })
             } else {
                 addTask(tasks).then((response) => {
-
                     navigator("/view_tasks");
-                    toast("task added succesfully")
+                    toast.success("task added succesfully")
                 }).catch((error) => {
                     console.log(error);
                 })
         }
 
-
-
     };
 
-
-    const { id } = useParams();
+    
     useEffect(() => {
-        console.log(id);
         if (id) {
             getTask(id).then(
                 (response) => {
@@ -103,11 +95,15 @@ function AddTask() {
     }, [id])
 
 
+const buttonText = id ? 'Update':'Add';
+const currentDate = new Date().toISOString().split('T')[0];
+
+
 
     return (
         <div className='carddiv' >
             <div className="cardd" >
-                <h2 className='addHead' >ADD/UPDATE </h2>
+                <h2 className='addHead' >{buttonText} </h2>
                 <Form onSubmit={handleForm}>
                     <div style={{ margin: "14px" }}>
                         <FormGroup >
@@ -121,16 +117,13 @@ function AddTask() {
                                 value={taskName}
                                 onChange={(event)=>{setTaskName(event.target.value)}}
                                 invalid={errors.taskName !== ''}
-                                
-
+                                minLength={3}
+                                maxLength={30}
                             />
                             
-
                             {errors.taskName && (
                                 <FormFeedback>{errors.taskName}</FormFeedback>
                             )}
-
-
 
                         </FormGroup>
 
@@ -143,8 +136,8 @@ function AddTask() {
                                 placeholder="Enter your status"
                                 id="status"
                                 value={status}
-                                onChange={(event)=>{setStatus(event.target.value)}}
-                    
+                                onChange={(event)=>{
+                                    setStatus(event.target.value)}}
                                 invalid={errors.status !== ''}
                                 autoComplete='off'
                             >
@@ -152,11 +145,11 @@ function AddTask() {
                                     not selected
                                 </option>
 
-                                <option value="pending ">
+                                <option value="Pending">
                                     Pending
                                 </option>
 
-                                <option value="done">
+                                <option value="Done">
                                     Done
                                 </option>
                             </Input>
@@ -178,6 +171,7 @@ function AddTask() {
                                 value={date}
                                 onChange={(event)=>{setDate(event.target.value)}}
                                 invalid={errors.date !== ''}
+                                min ={currentDate}
                             />
 
                             {errors.date && (
@@ -185,7 +179,7 @@ function AddTask() {
                             )}
                         </FormGroup>
 
-                        <Button type="submit" className='btn btn1' > Add</Button>
+                        <Button type="submit" className='btn btn1' > {buttonText}</Button>
                         <Button type="reset" className='btn btn2 ' onClick={(e) => {
                             setTaskName(" ");
                             setStatus(" ");

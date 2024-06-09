@@ -69,17 +69,18 @@
 
 table {
   width: 100% !important;
+  background-color: 0;
 }
 
 table tr {
   line-height: 100%;
   vertical-align: middle;
 }
-
-.highlight-row tr {
-  background-color: rgba(199, 251, 154, 0.655) !important;
-  font-weight: bold !important;
+table td{
+  width: 14%;
 }
+
+
 
 .menu {
   color: #6F4E37;
@@ -187,11 +188,11 @@ table tr {
 .noTask {
   color: #007f72;
   font-weight: bold;
-  font-size: 28px;
+  font-size: 22px;
 }
 
 .fillTask {
-  color: #007f72;
+  color:  #D04848;
   margin-top: 20px;
   font-size: 15px;
   font-weight: bold;
@@ -210,3 +211,11 @@ table tr {
   margin-top: 0;
   margin-left: 5px;
 }
+ tr.highlight-row {
+  font-weight: bolder;
+  font-size: 15px;
+  font-style: italic;
+}
+ thead{
+  font-size: 18px;
+ }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Table, InputGroup, Input } from 'reactstrap';
+import { Button, Table,Input } from 'reactstrap';
 import { allTasks, removeTask } from '../backendFunctions/TaskService';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -14,7 +14,6 @@ const AllTasks = () => {
 
     useEffect(() => {
         document.title = "AllTasks";
-        const currentDate = new Date().toISOString().split('T')[0];
         getAllTask();
     }, [])
 
@@ -48,11 +47,13 @@ const AllTasks = () => {
         if(!query){
             return tasks;
         }
-        return tasks.filter(t => t.taskName.toLowerCase().startsWith(query.toLowerCase()));
+        return tasks.filter(t => t.taskName.toLowerCase().includes(query.toLowerCase()));
     }
 
 
     const filtered = getFilteredItems(query,tasks);
+    const currentDate = new Date().toISOString().split('T')[0];
+
 
     return (
         <div>
@@ -76,9 +77,9 @@ const AllTasks = () => {
                         <tbody>
 
                             {  
-                                query == ""?(
+                                query ===""?(
                                 tasks.map(task =>
-                                    <tr key={task.id} >
+                                    <tr key={task.id} className={task.date === currentDate ? 'highlight-row' : ''} >
                                         <td>{task.taskName}</td>
                                         <td>{task.status}</td>
                                         <td>{task.date}</td>

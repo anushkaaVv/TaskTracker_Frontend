@@ -3,10 +3,10 @@ import { useEffect } from 'react'
 import myimagecopy from "../images/myimage copy.png"
 const Home = () => {
 
-  useEffect(() =>{
+  useEffect(() => {
     document.title = "Task Tracker||Home";
 
-}, [])
+  }, [])
 
   return (
     <div className="home">

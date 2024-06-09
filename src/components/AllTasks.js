@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Table } from 'reactstrap';
+import { Button, Table, InputGroup, Input } from 'reactstrap';
 import { allTasks, removeTask } from '../backendFunctions/TaskService';
 import { useNavigate } from 'react-router-dom';
-import {toast} from 'react-toastify';
+import { toast } from 'react-toastify';
+
 
 
 const AllTasks = () => {
 
-
     const [tasks, setTasks] = useState([]);
+    const [query,setQuery] =useState("");
     const navigator = useNavigate();
-
 
     useEffect(() => {
         document.title = "AllTasks";
@@ -21,8 +21,8 @@ const AllTasks = () => {
 
     function getAllTask() {
         allTasks().then((response) => {
-        const sortedTasks = response.data.sort((a, b) => new Date(a.date) - new Date(b.date));
-        setTasks(sortedTasks);
+            const sortedTasks = response.data.sort((a, b) => new Date(a.date) - new Date(b.date));
+            setTasks(sortedTasks);
         }).catch(error => {
             console.error(error);
         })
@@ -34,21 +34,35 @@ const AllTasks = () => {
     }
 
 
-
     function deleteTask(taskid) {
         removeTask(taskid).then((response) => {
             toast("task Deleted succesfully")
             getAllTask();
-            
+
         }).catch((error) => {
             console.log(error);
         })
     }
 
+    function getFilteredItems(query, tasks){
+        if(!query){
+            return tasks;
+        }
+        return tasks.filter(t => t.taskName.toLowerCase().startsWith(query.toLowerCase()));
+    }
+
+
+    const filtered = getFilteredItems(query,tasks);
+
     return (
+        <div>
+
+            <div className='searchBar'>
+                <Input type="text" placeholder='Search By Task Name' onChange={e=> setQuery(e.target.value)} />
+            </div>
+
             <div className='tableBox' >
                 {tasks.length > 0 ? (
-               
                     <Table hover >
                         <thead>
                             <tr>
@@ -60,8 +74,9 @@ const AllTasks = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {
 
+                            {  
+                                query == ""?(
                                 tasks.map(task =>
                                     <tr key={task.id} >
                                         <td>{task.taskName}</td>
@@ -75,13 +90,34 @@ const AllTasks = () => {
                                         </td>
                                     </tr>
                                 )
+                                ):
+                                (
+                                    filtered.length>0?(
+                                    
+                                    filtered.map(t=>
+                                        <tr key={t.id} >
+                                        <td>{t.taskName}</td>
+                                        <td>{t.status}</td>
+                                        <td>{t.date}</td>
+                                        <td>
+                                            <Button className='allBtn updatebtn' onClick={() => updateTask(t.id)}  > Update</Button>
+                                        </td>
+                                        <td>
+                                            <Button className='allBtn deletebtn' onClick={() => deleteTask(t.id)}  > Delete</Button>
+                                        </td>
+                                
+                                        </tr>
+                                        
+                                    )):(<p className=' fillTask'>Oops! No Such Task </p>)
+                                )
                             }
                         </tbody>
-                    </Table>):( 
-                        <p className='noTask'>No Tasks to display</p>
-                    )}
-                
+                    </Table>) : (
+                    <p className='noTask'>No Tasks to display</p>
+                )}
+
             </div>
+        </div>
     )
 }
 

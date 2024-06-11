@@ -115,7 +115,9 @@ const currentDate = new Date().toISOString().split('T')[0];
                                 placeholder="Enter your task"
                                 id="title"
                                 value={taskName}
-                                onChange={(event)=>{setTaskName(event.target.value)}}
+                                onChange={(event)=>{setTaskName(event.target.value);
+                                errors.taskName="";
+                                }}
                                 invalid={errors.taskName !== ''}
                                 minLength={3}
                                 maxLength={30}
@@ -137,7 +139,10 @@ const currentDate = new Date().toISOString().split('T')[0];
                                 id="status"
                                 value={status}
                                 onChange={(event)=>{
-                                    setStatus(event.target.value)}}
+                                    setStatus(event.target.value)
+                                    errors.status=""
+                                }}
+                                    
                                 invalid={errors.status !== ''}
                                 autoComplete='off'
                             >
@@ -169,7 +174,9 @@ const currentDate = new Date().toISOString().split('T')[0];
                                 placeholder="Enter your Date"
                                 id="date"
                                 value={date}
-                                onChange={(event)=>{setDate(event.target.value)}}
+                                onChange={(event)=>{setDate(event.target.value)
+                                    errors.date=""
+                                }}
                                 invalid={errors.date !== ''}
                                 min ={currentDate}
                             />
@@ -181,9 +188,15 @@ const currentDate = new Date().toISOString().split('T')[0];
 
                         <Button type="submit" className='btn btn1' > {buttonText}</Button>
                         <Button type="reset" className='btn btn2 ' onClick={(e) => {
-                            setTaskName(" ");
-                            setStatus(" ");
-                            setDate(" ")
+                            setTaskName("");
+                            setStatus("");
+                            setDate("");
+                            setErrors({
+                                taskName:"",
+                                status:"",
+                                date:""
+                            });
+
                         }}>Clear</Button>
                     </div>
 

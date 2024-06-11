@@ -96,7 +96,7 @@ const AllTasks = () => {
                                     filtered.length>0?(
                                     
                                     filtered.map(t=>
-                                        <tr key={t.id} >
+                                        <tr key={t.id} className={t.date === currentDate ? 'highlight-row' : ''} >
                                         <td>{t.taskName}</td>
                                         <td>{t.status}</td>
                                         <td>{t.date}</td>
